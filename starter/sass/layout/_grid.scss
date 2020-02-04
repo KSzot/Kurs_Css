@@ -68,3 +68,10 @@
         margin-right: $gutter-horizontal;
     }
 }
+.col-1-of-3 {
+    float: left;
+    width: calc((100% - (2 * #{$gutter-horizontal}))/3);
+    &:not(:last-child) {
+        margin-right: $gutter-horizontal;
+    }
+}
