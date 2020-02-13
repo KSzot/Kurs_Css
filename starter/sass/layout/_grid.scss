@@ -52,8 +52,15 @@
     max-width: $grid-width;
     margin: 0 auto;
 
+    @include respond(tab-port) { // less 900
+        max-width: 50rem;
+        padding: 0 3rem;
+    }
     &:not(:last-child) {
         margin-bottom: $gutter-vertical;
+        @include respond(tab-port) { // less 900
+            margin-bottom: $gutter-vertical-small;
+        }
     }
 
     @include clearfix;
@@ -63,13 +70,30 @@
     width: calc((100% - #{$gutter-horizontal})/2);
     &:not(:last-child){
         margin-right: $gutter-horizontal;
+        @include respond(tab-port) { // less 900
+            margin-right: 0;
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+    @include respond(tab-port) { // less 900
+        width: 100% !important;
     }
 }
 .col-1-of-4 {
     float: left;
     width: calc((100% - (3 * #{$gutter-horizontal})) /4);
+    
+    @include respond(tab-port) { // less 900
+        width: 100% !important;
+    }
+    
     &:not(:last-child){
         margin-right: $gutter-horizontal;
+        @include respond(tab-port) { // less 900
+            margin-right: 0;
+            margin-bottom: $gutter-vertical-small;
+
+        }
     }
 }
 .col-1-of-3 {
@@ -77,5 +101,13 @@
     width: calc((100% - (2 * #{$gutter-horizontal}))/3);
     &:not(:last-child) {
         margin-right: $gutter-horizontal;
+        @include respond(tab-port) { // less 900
+            margin-right: 0;
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+
+    @include respond(tab-port) { // less 900
+        width: 100% !important;
     }
 }

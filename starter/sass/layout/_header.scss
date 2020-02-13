@@ -2,16 +2,45 @@
 
 .header{
     position: relative;
-    height: 95vh; /*95% wysokosci strony*/
+    height: 85vh; /*95% wysokosci strony*/
     background-image: linear-gradient(to right bottom,
     rgba($color-primary, 0.8),
     rgba($color-primary-dark, 0.8)),
-    url("../img/hero.jpg");
+    url("../img/hero-small.jpg");
     background-size: cover; /* doczytac */
     background-position: top;
-    -webkit-clip-path: polygon(0 0, 100% 0,100% 75vh, 0 100%);
-    clip-path: polygon(0 0, 100% 0,100% 75vh, 0 100%);
+    
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0,100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0,100% 75vh, 0 100%);
+        height: 95vh;
+    }
 
+
+    //Dla wyswietlaczy retina (wysoka jakość obrazu) i dla ekranów powyżej 600px
+    // używa zdjecia o szerokości 2000px
+    @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // linia dla safari
+    (min-width: 125em) {
+        background-image: linear-gradient(to right bottom,
+        rgba($color-primary, 0.8),
+        rgba($color-primary-dark, 0.8)),
+        url("../img/hero.jpg");
+    }
+    //dla duzych ekranow ze slaba jakoscia ustaw 2000px zdjecie
+    //jest w komentarzu bo znak " , "
+    //oznacza or 
+    /*@media (min-width: 2000px) {
+        background-image: linear-gradient(to right bottom,
+        rgba($color-primary, 0.8),
+        rgba($color-primary-dark, 0.8)),
+        url("../img/hero.jpg");
+    }*/
+
+    @include respond(phone) { // less 900
+        -webkit-clip-path: polygon(0 0, 100% 0,100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0,100% 85vh, 0 100%);
+    }
     &__logo-box {
         position: absolute;
         top: 4rem;
